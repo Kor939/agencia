@@ -29,7 +29,7 @@ class Auto(models.Model):
     color = models.CharField (max_length=60)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     transmision = models.CharField(max_length=20)
-    estado = models.CharField(max_length=20, default="disponible")
+    estado = models.CharField(max_length=20, default="Disponible")
     imagen = models.ImageField(upload_to="auto_images/")
 
     def __str__(self):

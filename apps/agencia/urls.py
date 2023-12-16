@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (
-    ModeloListView, ModeloCreateView, ModeloDetailView, ModeloUpdateView, ModeloDeleteView, MarcaListView, MarcaCreateView, MarcaDetailView, MarcaUpdateView, MarcaDeleteView, MarcaModeloListView, MarcaModeloCreateView, MarcaModeloDetailView, MarcaModeloUpdateView, MarcaModeloDeleteView
+    ModeloListView, ModeloCreateView, ModeloDetailView, ModeloUpdateView, ModeloDeleteView, MarcaListView, MarcaCreateView, MarcaDetailView, MarcaUpdateView, MarcaDeleteView, MarcaModeloListView, MarcaModeloCreateView, MarcaModeloDetailView, MarcaModeloUpdateView, MarcaModeloDeleteView, AutoListView, AutoCreateView, AutoDeleteView, AutoDetailView, AutoUpdateView
 )
 # from .views import AutoLisarca
 
@@ -24,5 +24,12 @@ urlpatterns = [
      path("marca-modelo/<int:pk>/", MarcaModeloDetailView.as_view(), name="marca_modelo_detail"),
      path("marca-modelo/create/", MarcaModeloCreateView.as_view(), name="marca_modelo_create"),
      path('marca-modelo/<int:pk>/update/', MarcaModeloUpdateView.as_view(), name='marca_modelo_update'),
-     path('marca-modelo/<int:pk>/delete/', MarcaModeloDeleteView.as_view(), name='marca_modelo_delete')  
+     path('marca-modelo/<int:pk>/delete/', MarcaModeloDeleteView.as_view(), name='marca_modelo_delete'),
+
+     #Rutas para modelo Auto
+     path("auto/list/", AutoListView.as_view(), name="auto_list"),
+     path("auto/<int:pk>/", AutoDetailView.as_view(), name="auto_detail"),
+     path("auto/create/", AutoCreateView.as_view(), name="auto_create"),
+     path('auto/<int:pk>/update/', AutoUpdateView.as_view(), name='auto_update'),
+     path('auto/<int:pk>/delete/', AutoDeleteView.as_view(), name='auto_delete')  
 ]
