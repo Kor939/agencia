@@ -12,6 +12,7 @@ class ModeloDetailView(DetailView):
     modelo = Modelo
     template_name = "agencia/modelos/modelo_detail.html"
     context_object_name = "modelo"
+    queryset = Modelo.objects.all()
 
 class ModeloCreateView(CreateView):
     model = Modelo
@@ -44,6 +45,7 @@ class MarcaDetailView(DetailView):
     modelo = Marca
     template_name = "agencia/marcas/marca_detail.html"
     context_object_name = "marca"
+    queryset = Marca.objects.all()
 
 class MarcaCreateView(CreateView):
     model = Marca
@@ -75,24 +77,25 @@ class MarcaModeloListView(ListView):
 class MarcaModeloDetailView(DetailView):
     modelo = MarcaModelo
     template_name = "agencia/marcasmodelos/marca_modelo_detail.html"
-    context_object_name = "marcasmodelos"
+    context_object_name = "marcamodelo"
+    queryset = MarcaModelo.objects.all()
 
 class MarcaModeloCreateView(CreateView):
     model = MarcaModelo
     template_name = "agencia/marcasmodelos/marca_modelo_form.html"
-    context_object_name = "marcasmodelos"
+    context_object_name = "marcamodelo"
     fields = "__all__"
     success_url = reverse_lazy("marca_modelo_list")
 
 class MarcaModeloUpdateView(UpdateView):
     model = MarcaModelo
     template_name = "agencia/marcasmodelos/marca_modelo_form.html"
-    context_object_name = "marcasmodelos"
+    context_object_name = "marcamodelo"
     fields = "__all__"
     success_url = reverse_lazy("marca_modelo_list")
 
 class MarcaModeloDeleteView(DeleteView):
     model = MarcaModelo
     template_name = "agencia/marcasmodelos/marca_modelo_confirm_delete.html"
-    context_object_name = "marcasmodelos"
+    context_object_name = "marcamodelo"
     success_url = reverse_lazy("marca_modelo_list")

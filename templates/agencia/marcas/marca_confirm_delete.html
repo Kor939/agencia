@@ -3,9 +3,9 @@
 {% block content %}
     <h2>Eliminar Marca</h2>
     <p>¿Estás seguro de que deseas eliminar "{{ marca }}"?</p>
-    <from method="post">
+    <form method="post">
         {% csrf_token %}
         <button type="submit">Sí, eliminar</button>
-    </from>
+    </form>
     <a href="{% url 'marca_list' %}">Cancelear</a>
 {% endblock %}
