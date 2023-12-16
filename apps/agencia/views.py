@@ -1,9 +1,8 @@
 import os
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Auto, Modelo, Marca, MarcaModelo
 
-#CRUD Modelo
 class ModeloListView(ListView):
     model = Modelo
     template_name = "agencia/modelos/modelo_list.html"

@@ -8,40 +8,38 @@ from apps.users.models import Perfil
 
 
 class Modelo(models.Model):
-    nombre = models.CharField(max_length=260, unique=True)
+    nombre = models.CharField(max_length=255, unique=True)
 
     class Meta:
-        ordering = ("nombre",)
+        ordering = ('nombre',)
 
     def __str__(self):
         return self.nombre
 
 class Marca(models.Model):
-    nombre = models.CharField(max_length=170, unique=True)
+    nombre = models.CharField(max_length=255, unique=True)
 
     class Meta:
-        ordering = ("nombre",)
+        ordering = ('nombre',)
 
     def __str__(self):
         return self.nombre
-
-
+    
 class MarcaModelo(models.Model):
     modelo = models.ForeignKey(Modelo, on_delete=models.CASCADE)
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ("marca",)
+        ordering = ('marca',)
 
     def __str__(self):
-        return f"{self.marca} - {self.modelo}"
-    
+        return f'{self.marca} - {self.modelo}'
 
 class Auto(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     perfil = models.ForeignKey(Perfil, on_delete=models.PROTECT)
-    titulo = models.CharField(max_length=260, unique=True)
-    url = models.SlugField(max_length=260, unique=True)
+    titulo = models.CharField(max_length=255, unique=True)
+    url = models.SlugField(max_length=255, unique=True)
     resumen = RichTextField()
     contenido = RichTextField()
     vistas = models.PositiveIntegerField(default=0)
@@ -51,30 +49,30 @@ class Auto(models.Model):
     visible = models.BooleanField(default=True)
     anio = models.PositiveIntegerField()
     km = models.PositiveIntegerField()
-    color = models.CharField (max_length=60)
+    color = models.CharField(max_length=50)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    transmision = models.CharField(max_length=20)
-    estado = models.CharField(max_length=20, default="Disponible")
-    imagen = models.ImageField(upload_to="auto_imagenes/")
+    transmision = models.CharField(max_length=20, default='Manual')
+    estado = models.CharField(max_length=20, default='Disponible')
+    imagen = models.ImageField(upload_to='auto/imagenes/')
 
     creado = models.DateTimeField(auto_now_add=True)
     modificado = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ("creado",)
+        ordering = ('creado',)
 
     def save(self, *args, **kwargs):
         self.url = slugify(self.titulo)
-        super(Auto, self).save(*args, **kwargs)
+        super(Auto, self).save(*args, **kwargs)     
 
     def __str__(self):
-        return f"{self.marca_modelo} - {self.user.username}"
-    
+        return f'{self.marca_modelo} - {self.user.username}'
+
 
 class Comentario(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     perfil = models.ForeignKey(Perfil, on_delete=models.PROTECT)
     auto = models.ForeignKey(Auto, on_delete=models.PROTECT)
-    comentario = models.CharField(max_length=4000)
+    comentario = models.CharField(max_length=5000)
     visible = models.BooleanField(default=True)
     creado = models.DateTimeField(auto_now_add=True)
