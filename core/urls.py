@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-	path('', include('apps.agencia.urls'))
+	path('', include(('apps.agencia.urls'), namespace="agencia")),
+	path("auth", include(("apps.users.urls"), namespace="auth")),
 ]
 
 # Configuración para servir archivos de medios durante el desarrollo
